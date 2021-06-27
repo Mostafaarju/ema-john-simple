@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
-const Cart = (props) => {
+const Cart = props => {
   const cart = props.cart;
   //   const totalPrice = cart.reduce((total, prd) => total + prd.price, 0);
   let total = 0;
   for (let i = 0; i < cart.length; i++) {
     const product = cart[i];
-    total = total + product.price * product.quantity;
+    total = total + product.price * product.quantity || 1;
   }
 
   let shipping = 0;
@@ -21,14 +21,14 @@ const Cart = (props) => {
   const tax = (total / 10).toFixed(2);
   const grandTotal = (total + shipping + Number(tax)).toFixed(2);
 
-  const formateNumber = (num) => {
+  const formateNumber = num => {
     const precision = num.toFixed(2);
     return Number(precision);
   };
 
   return (
     <div>
-      <h4 className="text-primary ">Order Summary</h4>
+      <h4 className='text-primary '>Order Summary</h4>
       <p>Items ordered: {cart.length} </p>
       <p>Product Price: {formateNumber(total)}</p>
       <p>
